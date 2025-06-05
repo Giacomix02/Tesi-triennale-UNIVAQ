@@ -1,0 +1,69 @@
+%SETUP%
+\documentclass[a4paper,11pt,oneside,titlepage]{book}
+\input{include/settings/settings}
+
+\begin{document}
+
+%   FRONT MATTER                                            %
+\frontmatter 	   % Begin Roman style (i, ii, iii, iv...) page numbering
+\pagestyle{empty}  % No headers or footers for the following pages
+
+%   TITLE PAGE
+\input{include/1-front/titlepage} 
+\clearpage
+
+%   TOC - LOF - LOT
+\begin{singlespace}
+ \tableofcontents 	
+% \renewcommand{\lstlistlistingname}{List of Code}
+% \addcontentsline{toc}{chapter}{\lstlistlistingname} 
+% \lstlistoflistings
+
+%   NOMENCLATURE AND ACRONYMS
+ \printnomenclature
+ \printglossaries
+\end{singlespace}
+
+%   MAIN MATTER
+\mainmatter	  % Begin normal, numeric (1,2,3...) page numbering
+\clearpage
+% ------ set page style fancy with the follow 
+\pagestyle{fancy} 
+\renewcommand{\chaptermark}[1]{\markright{\chaptername\ \thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+\lhead{} 
+\chead{}                   
+\rhead{\slshape \rightmark} 
+\lfoot{Name}
+\cfoot{} 
+\rfoot{\thepage}          
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0.4pt} 
+
+%   CHAPTERS
+\input{include/2-chapters/introduzione}
+\input{include/2-chapters/tecnologieUtilizzate}
+\input{include/2-chapters/tecnologieConcorrentiEConfronti.tex}
+\input{include/2-chapters/processoTecnicheSviluppoApp}
+\input{include/2-chapters/utilizzoDiGemini}
+\input{include/2-chapters/progettazione}
+\input{include/2-chapters/implementazione}
+\input{include/2-chapters/conclusioni}
+
+%   BACK MATTER
+%   BIBLIOGRAPHY
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Bibliografia}
+\bibliography{include/3-back/bibliografia}
+
+%   APPENDIX
+%\cleardoublepage
+%\appendix % to tell LaTeX that the following chapters are appendices
+%\input{include/3-back/appendix/appendix_A}
+
+%   ACKNOWLEDGEMENTS
+%\cleardoublepage
+%\pagenumbering{gobble}
+%\input{include/3-back/acknowledgement}
+
+\end{document} 

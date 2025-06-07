@@ -203,9 +203,27 @@ In figura \ref{fig:onCapturedPhotoToDisk} il metodo \textbf{OnCapturedPhotoToDis
 In figura \ref{fig:onStoppedPhotoMode} il metodo \textbf{OnStoppedPhotoMode} viene chiamato per terminare la modalità foto e rilasciare le risorse della fotocamera, in particolare tramite \texttt{photoCaptureObject.Dispose()} il cui metodo \texttt{Dispose()} viene chiamato per arrestare l'istanza di \textbf{PhotoCapture}.
 
 \section{Lista ingredienti}
+Possiamo definire la lista degli ingredienti come uon dei più complessi elementi presenti nell'applicazione, in quanto è composta da dei prefab che vengono visualizzati in una lista, ognuno dei quali contiene il nome dell'ingrediente modificabile e eliminabile.
 \subsection{Prefab}
+Utilizzando il prefab \textbf{IngredientButtonRow} possiamo visualizzare gli ingredienti all'interno della lista, riusciendolo a generarlo quanti sono gli ingredianeti presenti nel file JSON.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth,height=\textheight,keepaspectratio]{figures/chapter_1/prefab.png}
+    \caption{Gerarchia del prefab IngredientButtonRow}
+    \label{fig:prefab3D}
+\end{figure}
+Il prefab è un bottone al cui interno è presente un \textbf{TextMeshPro} per il nome dell'ingrediente, se cliccato verrà aperta la schermata di modifica del'ingrediente. 
+Al prefab è assegnato uno script \textbf{IngredientButtonRow} che contiene i metodi per l'inizializzazione del prefab e il funzionamento generale.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth,height=\textheight,keepaspectratio]{figures/chapter_1/prefab_CODICE.png}
+    \caption{Classe IngredientButtonRow}
+    \label{fig:prefabCodice}
+\end{figure}
+
+La variabile \textbf{TextFiels} è un riferimento al campo del prefab che contiene il nome dell'ingrediente, più in particolare è un campo serializzabile che viene visualizzato nell'Inspector di Unity, in modo da poterlo assegnare direttamente trascinando il componente, in questo caso il \textbf{TextMeshPro} del prefab, all'interno della variabile.
 \subsection{Visualizzazione e spawn prefab}
 \subsection{Aggiunta, modifica e cancellazione}
 
-
+\section{Tastiera virtuale}
 \section{Problematiche e soluzioni} 

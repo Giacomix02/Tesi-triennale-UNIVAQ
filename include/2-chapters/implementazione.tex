@@ -221,8 +221,27 @@ Al prefab è assegnato uno script \textbf{IngredientButtonRow} che contiene i me
     \label{fig:prefabCodice}
 \end{figure}
 
-La variabile \textbf{TextFiels} è un riferimento al campo del prefab che contiene il nome dell'ingrediente, più in particolare è un campo serializzabile che viene visualizzato nell'Inspector di Unity, in modo da poterlo assegnare direttamente trascinando il componente, in questo caso il \textbf{TextMeshPro} del prefab, all'interno della variabile.
-\subsection{Visualizzazione e spawn prefab}
+La variabile \textbf{TextField} è di tipo \textbf{TextMeshProUGUI} e rappresenta il campo di testo del nome dell'ingrediente, componente del prefab, e visto che è serializzabile e dichiarata come pubblica questa verrà mostrata nell'Inspector di Unity, permettendo di assegnare il campo di testo direttamente dal prefab con un drag and drop.\\
+Il metodo \texttt{InitializeRow(Ingredient ingredient)} viene chiamato per inizializzare il prefab con i dati dell'ingrediente passato come parametro, in particolare viene assegnato il nome dell'ingrediente al campo di testo \textbf{TextField} e salvato nella variabile \textbf{ingredient}.
+\subsection{Creazione del prefab all'interno della lista}
+La scroll list, come visto in fig.\ref{fig:scrollablePanel}, è formata da diversi oggetti nella gerarchia, tra cui il \textbf{Content}, ossia l'ultimo elemento della gerarchia ma il padre dei prefab generati. Infatti proprio questo oggetto è delegato alla loro creazione, modifica e cancellazione.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth,height=\textheight,keepaspectratio]{figures/chapter_1/IngredientsScrollList_START.png}
+    \caption{Dichiarazione delle variabili e metodo Start}
+    \label{fig:ingredientsScrollListStart}
+\end{figure}
+
+Fra le diverse variabli dichiarate troviamo \textbf{ingredients}, una lista di tipo \textbf{Ingredient} che andremo a popolare alla chiamata del metodo Start. \\
+Nel metodo \texttt{Start()} tramite la classe \textbf{FileHandler} andremo a leggere il file JSON degli ingredienti, se il metodo \texttt{LoadJson()} non è nulla allora chiamiamo la funzione \texttt{getIngredients()} implementata nella classe per serializzare il JSON, che resituisce una lista di ingredienti. Questa lista viene passata al metodo \texttt{generateRows()} che si occupa di  generare i prefab per ogni ingrediente presente nella lista \textbf{ingredients} e di aggiornare la variabile \textbf{ingredients} per poi generare i prefab all'interno della lista.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth,height=\textheight,keepaspectratio]{figures/chapter_1/generateRows_CODICE.png}
+    \caption{Metodo per generare i prefab}
+    \label{fig:generateRows}
+\end{figure}
+Il metodo \texttt{generateRows()} si occupa di generare i prefab per ogni ingrediente presente nella lista \textbf{ingredients}. Prima di tutto aggiorna la variabile \textbf{ingredients} con la lista degli ingredienti passata come parametro, poi se al suo interno ha dei figli vengono distrutti tramite un ciclo \texttt{foreach}, successivamente, sempre con un ciclo \texttt{foreach} per ogni ingrediente presente nella lista \textbf{ingredients} viene generato un prefab. La creazione del prefab viene spiegata al paragrafo \ref{sec:prefab}, aggiungiamo solo che il prefab viene generato tramite il metodo \texttt{Instantiate()} di Unity, che prende come parametro il prefab da generare e la posizione in cui generarlo, in questo caso la posizione è quella del \textbf{Content} della lista, per questo per semplicità è stato passato direttamente \textbf{transform}. Il prefab viene poi assegnato alla variabile \textbf{ingredientButtonRow} e viene chiamato il metodo \texttt{initializeRow()} passandogli come parametro l'oggetto di tipo \textbf{Ingredient}.
+
 \subsection{Aggiunta, modifica e cancellazione}
 
 \section{Tastiera virtuale}

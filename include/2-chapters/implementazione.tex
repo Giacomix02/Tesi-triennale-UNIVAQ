@@ -243,6 +243,34 @@ Nel metodo \texttt{Start()} tramite la classe \textbf{FileHandler} andremo a leg
 Il metodo \texttt{generateRows()} si occupa di generare i prefab per ogni ingrediente presente nella lista \textbf{ingredients}. Prima di tutto aggiorna la variabile \textbf{ingredients} con la lista degli ingredienti passata come parametro, poi se al suo interno ha dei figli vengono distrutti tramite un ciclo \texttt{foreach}, successivamente, sempre con un ciclo \texttt{foreach} per ogni ingrediente presente nella lista \textbf{ingredients} viene generato un prefab. La creazione del prefab viene spiegata al paragrafo \ref{sec:prefab}, aggiungiamo solo che il prefab viene generato tramite il metodo \texttt{Instantiate()} di Unity, che prende come parametro il prefab da generare e la posizione in cui generarlo, in questo caso la posizione è quella del \textbf{Content} della lista, per questo per semplicità è stato passato direttamente \textbf{transform}. Il prefab viene poi assegnato alla variabile \textbf{ingredientButtonRow} e viene chiamato il metodo \texttt{initializeRow()} passandogli come parametro l'oggetto di tipo \textbf{Ingredient}.
 
 \subsection{Aggiunta, modifica e cancellazione}
+Le funzionalità di aggiunta, modifica e cancellazione degli ingredienti sono delegate sempre alla classe \textbf{IngredientsScrollList}, tramite gli appositi metodi \texttt{addIngredient(string ingredientName)}, \texttt{ deleteIngredient(Ingredient ingredient, IngredientButtonRow ingredientButtonRow)} e \\ \texttt{modifyIngredient(Ingredient oldIngredient, Ingredient newIngredient, \\ IngredientButtonRow ingredientButtonRow)}. Inoltre è presente un metodo \texttt{saveList()} che si occupa di salvare la lista degli ingredienti nel file JSON, chiamato alla fine di ogni operazione di modifica della lista.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth,height=\textheight,keepaspectratio]{figures/chapter_1/addIngredient_CODICE.png}
+    \caption{Metodo per aggiungere un ingrediente}
+    \label{fig:addIngredient}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth,height=\textheight,keepaspectratio]{figures/chapter_1/modifyIngredient_CODICE.png}
+    \caption{Metodo per modificare un ingrediente}
+    \label{fig:modifyIngredient}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth,height=\textheight,keepaspectratio]{figures/chapter_1/deleteIngredient_CODICE.png}
+    \caption{Metodo per cancellare un ingrediente}
+    \label{fig:deleteIngredient}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth,height=\textheight,keepaspectratio]{figures/chapter_1/saveList_LISTA_CODICE.png}
+    \caption{Metodo per salvare la lista degli ingredienti}
+    \label{fig:saveListScrollList}
+\end{figure}
+
+
 
 \section{Tastiera virtuale}
 \section{Problematiche e soluzioni} 

@@ -251,18 +251,22 @@ Le funzionalità di aggiunta, modifica e cancellazione degli ingredienti sono de
     \caption{Metodo per aggiungere un ingrediente}
     \label{fig:addIngredient}
 \end{figure}
+L'Inserimento di un nuovo ingrediente avviene tramite il metodo\\ \texttt{addIngredient(string ingredientName)}, come in fig.\ref{fig:addIngredient}, che prende come parametro il nome dell'ingrediente da aggiungere.  Viene creato un nuovo oggetto di tipo \textbf{Ingredient} con il nome passato come parametro e un ID generato automaticamente, che viene incrementato di uno rispetto all'ultimo ID presente nella lista degli ingredienti. Successivamente viene aggiunto alla lista \textbf{ingredients}, viene aggiornata graficamente la lista e poi viene salvato il JSON.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth,height=\textheight,keepaspectratio]{figures/chapter_1/modifyIngredient_CODICE.png}
     \caption{Metodo per modificare un ingrediente}
     \label{fig:modifyIngredient}
 \end{figure}
+La modifica di un ingrediente avviene tramite il metodo \\ \texttt{modifyIngredient(Ingredient oldIngredient, Ingredient newIngredient,\\ IngredientButtonRow ingredientButtonRow)}, come in fig.\ref{fig:modifyIngredient}, che prende come parametri l'ingrediente da modificare, il nuovo ingrediente e il prefab dell'ingrediente da modificare. Viene cercato l'ingrediente da modificare nella lista \textbf{ingredients} e se trovato viene sostituito con il nuovo ingrediente, aggiornando il prefab con il nuovo nome e salvando la lista degli ingredienti nel file JSON.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth,height=\textheight,keepaspectratio]{figures/chapter_1/deleteIngredient_CODICE.png}
     \caption{Metodo per cancellare un ingrediente}
     \label{fig:deleteIngredient}
 \end{figure}
+L'eliminazione di un ingrediente avviene tramite il metodo \texttt{deleteIngredient(Ingredient ingredient, IngredientButtonRow ingredientButtonRow)}, come in fig.\ref{fig:deleteIngredient}, che prende come parametri l'ingrediente da eliminare e il prefab dell'ingrediente da eliminare. Tramite il metodo \texttt{Remove()} della lista \textbf{ingredients} viene eliminato l'ingrediente passato come parametro, successivamente viene distrutto il prefab dell'ingrediente e infine viene salvata la lista degli ingredienti nel file JSON.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth,height=\textheight,keepaspectratio]{figures/chapter_1/saveList_LISTA_CODICE.png}
@@ -270,7 +274,23 @@ Le funzionalità di aggiunta, modifica e cancellazione degli ingredienti sono de
     \label{fig:saveListScrollList}
 \end{figure}
 
-
-
 \section{Tastiera virtuale}
-\section{Problematiche e soluzioni} 
+La tastiera virtuale viene utilizzata per l'inserimento e la modifica degli ingredienti. È implementata tramite la classe \textbf{KeyboardManager} che fornisce i metodi per la sua apertura, chiusura e gestione degli eventi di input.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth,height=\textheight,keepaspectratio]{figures/chapter_1/KeyboardManager_OPEN_CLOSE.png}
+    \caption{Metodi per aprire e chiudere la tastiera}
+    \label{fig:keyboardManagerOpenClose}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth,height=\textheight,keepaspectratio]{figures/chapter_1/KeyboardManager_GET_SET_TEXT.png}
+    \caption{Metodi per ottenere e impostare il testo della tastiera}
+    \label{fig:keyboardManagerGetSetText}
+\end{figure}
+
+\section{Problematiche e soluzioni}
+In questa sezione andremo a descrivere le problematiche riscontrate durante lo sviluppo dell'applicazione e le relative soluzioni adottate.
+\subsection{Il file di config non veniva letto}
+
+\subsection{I prefab dentro la scroll list avevano dei collider errati}

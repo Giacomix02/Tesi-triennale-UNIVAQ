@@ -296,3 +296,8 @@ il file di config, dopo la compilazione e l'ultilizzo standalone, non veniva let
 
 \subsection{I prefab dentro la scroll list avevano dei collider di grandezza errata}
 Inizialmente i prafab all'interno della scrollist avevano un input field e vari bottoni, però man mano che cresceva il numero degli elementi nella scrollist più i collider di questi bottoni diminuivano di dimensione, rendendo impossibile cliccarli. Per risolvere si è optato per un unico bottone con dentro il nome dell'ingrediente, che toccato fa comparire un menù per la modifica dell'ingrediente.
+\subsection{Utilizzo delle coordinate che forniva Gemini per mettere dei punti sugli ingredienti}
+Gemini fornisce le coordinate degli ingredienti all'interno dell'immagine, ma queste coordinate sono bidimensionali e relative all'immagine stessa, quindi non possono essere utilizzate direttamente per posizionare i punti 3D nel mondo reale. Questo problema non è stato risolto ma potrà essere uno sviluppo futuro dell'applicazione.
+
+\subsection{Debugging dell'applicazione dopo la compilazione}
+Il debugging dell'applicazione dopo la compilazione è stato molto difficile, essendo che lo strumento integrato di visual studio era molto instabile e aveva un lag abbastanza elevato, rendendo inutilizzabile l'applicazione. Per risolvere il rpoblema è stato creato un panel e una classe che permettevano di visualizzare il log dell'applicazione, in modo da poter vedere gli errori e i messaggi di debug direttamente nell'applicazione.

@@ -292,5 +292,7 @@ La tastiera virtuale viene utilizzata per l'inserimento e la modifica degli ingr
 \section{Problematiche e soluzioni}
 In questa sezione andremo a descrivere le problematiche riscontrate durante lo sviluppo dell'applicazione e le relative soluzioni adottate.
 \subsection{Il file di config non veniva letto}
+il file di config, dopo la compilazione e l'ultilizzo standalone, non veniva letto correttamente, in quanto il percorso del file era errato. Per risolvere il problema è stato necessario spostare il file in una cartella chiamata \textbf{StreamingAssets} all'interno della cartella \textbf{Assets} del progetto Unity. In questo modo il file viene incluso nella build e il percorso viene preso dal metodo \texttt{Application.streamingAssetsPath} di Unity, che restituisce il percorso corretto della cartella in cui si trova il file in base alla piattaforma di destinazione.
 
-\subsection{I prefab dentro la scroll list avevano dei collider errati}
+\subsection{I prefab dentro la scroll list avevano dei collider di grandezza errata}
+Inizialmente i prafab all'interno della scrollist avevano un input field e vari bottoni, però man mano che cresceva il numero degli elementi nella scrollist più i collider di questi bottoni diminuivano di dimensione, rendendo impossibile cliccarli. Per risolvere si è optato per un unico bottone con dentro il nome dell'ingrediente, che toccato fa comparire un menù per la modifica dell'ingrediente.

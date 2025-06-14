@@ -199,8 +199,10 @@ Le Coroutine sono un modo per eseguire codice in modo asincrono, permettendo di 
 \end{figure}
 
 \subsection{Singleton}
-Il \textbf{Singleton} è un design pattern che garantisce che una classe abbia una sola istanza e fornisce un punto di accesso globale a essa. Ci sono diversi modi per implementare un Singleton in C\#, tra cui l'implementazione normale e basica e quella thread-safe, utilizzata in questo progetto. La versione thread-safe garantisce che l'istanza sia creata in modo sicuro anche in un ambiente multi-thread, evitando problemi di concorrenza.\\Tralasciando la versione normale, la versione thread-safe utilizza un blocco chiamato nel codice \textbf{padlock} per garantire che solo un thread alla volta possa accedere alla creazione dell'istanza. 
+Il \textbf{Singleton} è un design pattern che garantisce che una classe abbia una sola istanza fornendo un punto di accesso globale a essa. Ci sono diversi modi per implementare un Singleton in C\#, tra cui l'implementazione basica e quella thread-safe, utilizzata in questo progetto. La versione thread-safe garantisce che l'istanza sia creata in modo sicuro anche in un ambiente multi-thread, evitando problemi di concorrenza.\\Tralasciando la versione normale, la versione thread-safe utilizza un blocco chiamato nel codice \textbf{padlock} per garantire che solo un thread alla volta possa accedere alla creazione dell'istanza. 
 \vspace{10cm}
+
+Di seguito un esempio di implementazione di un Singleton thread-safe in C\#:
 
 \begin{lstlisting}[language=java]
 public sealed class Singleton

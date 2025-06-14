@@ -9,10 +9,10 @@
     \label{fig:use_case}
 \end{figure}
 
-Lo use case in fig.\ref{fig:use_case} mostra lo scenario in cui l'utente ha già aprto entrambe le finestre dell'applicazione, quella per la fotocamera e generazione degli ingredienti e quella per la visualizzazione delle ricette. L'utente potrà scattare una foto ed eliminarla, generare gli ingredienti solo se la foto è stata scattata, aggiungere un ingrediente indipendentemente dalla foto, modificare un ingrediente già presente, generare tre ricette con gli ingredienti presenti e visualizzare le ricette generate.
+Lo use case in fig.\ref{fig:use_case} mostra lo scenario in cui l'utente ha già aperto entrambe le finestre dell'applicazione, quella per la fotocamera e generazione degli ingredienti e quella per la visualizzazione delle ricette. L'utente potrà scattare una foto ed eliminarla, generare gli ingredienti solo se la foto è stata scattata, aggiungere un ingrediente indipendentemente dalla foto, modificare un ingrediente già presente, generare tre ricette con gli ingredienti presenti e visualizzare le ricette generate.
 
 \section{Architettura}
-L'intera applicazione è standalone sul visore, quindi non necessita di un server per il funzionamento. Le uniche operazioni e calcoli che avvengono all'infuori del visore sono quelle che coinvolgono Google Gemini, che avvengono grazie a delle chiamate API in \textbf{POST}.
+L'intera applicazione è standalone sul visore, quindi non necessita di un server per il funzionamento. Le uniche operazioni e calcoli che avvengono al di fuori del visore sono quelle che coinvolgono Google Gemini, che avvengono grazie a delle chiamate API in \textbf{POST}.
 \section{Interfaccia grafica}
 L'interfaccia è composta da due finestre, composte poi da più tabs, e un menu sempre visibile. Ogni finestra ha in alto una barra in cui è presente il nome della finesta e due bottoni posizionati a destra. Il bottone con il simbolo della "X" permette di chiudere la finestra, mentre quello con il simbolo della catena serve a bloccare la finestra nella posizione dove si trova o farsi seguire.
 \subsection{Menu}

@@ -3,7 +3,7 @@
 
 
 \section{Introduzione}
-In questa sezione andremo a descrivere l'implementazione andando a dare uno sguardo più profondo al codice e successivamente anche alle problematiche riscontrate surante lo sviluppo con le relative soluzioni.
+In questa sezione andremo a descrivere l'implementazione andando a dare uno sguardo più profondo al codice e successivamente anche alle problematiche riscontrate durante lo sviluppo con le relative soluzioni.
 
 
 \section{Gemini API}
@@ -16,7 +16,7 @@ In questa sezione andremo a descrivere l'implementazione andando a dare uno sgua
 \end{wrapfigure}
 
 Lo Structured Output permette di farsi restituire da Gemini una risposta standardizzata, in questo caso un JSON, predefinita sotto forma di uno schema. Lo \textbf{Schema} supporta array, tipi e oggetti dentro i quali è possibile definire i tipi dei dati e i loro nomi. \cite{StructuredOutput}
-I tipi nello \textbf{Schema} devono essere uno degli OpenAPI Data Types, oppure un'unione di questi tipi (utilizzando \texttt{anyOf}). Per ciascun tipo, è valido solo un determinato sottoinsieme di campi. Nella seguente lista viene riportata la corrispondenza tra ciascun tipo e il relativo insieme di campi validi:
+I tipi nello \textbf{Schema} devono essere uno degli OpenAPI Data Types, oppure un'unione di questi tipi (utilizzando \texttt{anyOf}). Per ognuno di essi, è valido solo un determinato sottoinsieme di campi. Nella seguente lista viene riportata la corrispondenza tra ciascun tipo e il relativo insieme di campi validi:
 \begin{itemize}
     \item \textbf{string}: \texttt{enum}, \texttt{format}, \texttt{nullable}
     \item \textbf{integer}: \texttt{format}, \texttt{minimum}, \texttt{maximum}, \texttt{enum}, \texttt{nullable}
@@ -203,16 +203,16 @@ In figura \ref{fig:onCapturedPhotoToDisk} il metodo \textbf{OnCapturedPhotoToDis
 In figura \ref{fig:onStoppedPhotoMode} il metodo \textbf{OnStoppedPhotoMode} viene chiamato per terminare la modalità foto e rilasciare le risorse della fotocamera, in particolare tramite \texttt{photoCaptureObject.Dispose()} il cui metodo \texttt{Dispose()} viene chiamato per arrestare l'istanza di \textbf{PhotoCapture}.
 
 \section{Lista ingredienti}
-Possiamo definire la lista degli ingredienti come uon dei più complessi elementi presenti nell'applicazione, in quanto è composta da dei prefab che vengono visualizzati in una lista, ognuno dei quali contiene il nome dell'ingrediente modificabile e eliminabile.
+Possiamo definire la lista degli ingredienti come uno dei più complessi elementi presenti nell'applicazione, in quanto è composta da dei prefab che vengono visualizzati in essa, ognuno dei quali contiene il nome dell'ingrediente modificabile e eliminabile.
 \subsection{Prefab}
-Utilizzando il prefab \textbf{IngredientButtonRow} possiamo visualizzare gli ingredienti all'interno della lista, riusciendolo a generarlo quanti sono gli ingredianeti presenti nel file JSON.
+Utilizzando il prefab \textbf{IngredientButtonRow} possiamo visualizzare gli ingredienti all'interno della lista, generandolo tante volte quanti sono gli ingredienti presenti nel file JSON.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth,height=\textheight,keepaspectratio]{figures/chapter_1/prefab.png}
     \caption{Gerarchia del prefab IngredientButtonRow}
     \label{fig:prefab3D}
 \end{figure}
-Il prefab è un bottone al cui interno è presente un \textbf{TextMeshPro} per il nome dell'ingrediente, se cliccato verrà aperta la schermata di modifica del'ingrediente. 
+Il prefab è un bottone al cui interno è presente un \textbf{TextMeshPro} per il nome dell'ingrediente, se cliccato verrà aperta la schermata di modifica dell'ingrediente. 
 Al prefab è assegnato uno script \textbf{IngredientButtonRow} che contiene i metodi per l'inizializzazione del prefab e il funzionamento generale.
 \begin{figure}[H]
     \centering
@@ -221,7 +221,7 @@ Al prefab è assegnato uno script \textbf{IngredientButtonRow} che contiene i me
     \label{fig:prefabCodice}
 \end{figure}
 
-La variabile \textbf{TextField} è di tipo \textbf{TextMeshProUGUI} e rappresenta il campo di testo del nome dell'ingrediente, componente del prefab, e visto che è serializzabile e dichiarata come pubblica questa verrà mostrata nell'Inspector di Unity, permettendo di assegnare il campo di testo direttamente dal prefab con un drag and drop.\\
+La variabile \textbf{TextField} è di tipo \textbf{TextMeshProUGUI} e rappresenta il campo di testo che contiene il nome dell'ingrediente, componente del prefab, e visto che è serializzabile e dichiarata come pubblica questa verrà mostrata nell'Inspector di Unity, permettendo di assegnare il campo di testo direttamente dal prefab con un drag and drop.\\
 Il metodo \texttt{InitializeRow(Ingredient ingredient)} viene chiamato per inizializzare il prefab con i dati dell'ingrediente passato come parametro, in particolare viene assegnato il nome dell'ingrediente al campo di testo \textbf{TextField} e salvato nella variabile \textbf{ingredient}.
 \subsection{Creazione del prefab all'interno della lista}
 La scroll list, come visto in fig.\ref{fig:scrollablePanel}, è formata da diversi oggetti nella gerarchia, tra cui il \textbf{Content}, ossia l'ultimo elemento della gerarchia ma il padre dei prefab generati. Infatti proprio questo oggetto è delegato alla loro creazione, modifica e cancellazione.
@@ -233,7 +233,7 @@ La scroll list, come visto in fig.\ref{fig:scrollablePanel}, è formata da diver
 \end{figure}
 
 Fra le diverse variabli dichiarate troviamo \textbf{ingredients}, una lista di tipo \textbf{Ingredient} che andremo a popolare alla chiamata del metodo Start. \\
-Nel metodo \texttt{Start()} tramite la classe \textbf{FileHandler} andremo a leggere il file JSON degli ingredienti, se il metodo \texttt{LoadJson()} non è nulla allora chiamiamo la funzione \texttt{getIngredients()} implementata nella classe per serializzare il JSON, che resituisce una lista di ingredienti. Questa lista viene passata al metodo \texttt{generateRows()} che si occupa di  generare i prefab per ogni ingrediente presente nella lista \textbf{ingredients} e di aggiornare la variabile \textbf{ingredients} per poi generare i prefab all'interno della lista.
+Nel metodo \texttt{Start()} tramite la classe \textbf{FileHandler} andremo a leggere il file JSON degli ingredienti, se il metodo \texttt{LoadJson()} non è nulla allora chiamiamo la funzione \texttt{getIngredients()} implementata nella classe per serializzare il JSON, che restituisce una lista di ingredienti. Questa lista viene passata al metodo \texttt{generateRows()}, che si occupa di generare i prefab per ogni ingrediente presente nella lista \textbf{ingredients} e di aggiornare la variabile \textbf{ingredients} per poi generare i prefab all'interno della lista.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth,height=\textheight,keepaspectratio]{figures/chapter_1/generateRows_CODICE.png}
@@ -292,12 +292,12 @@ La tastiera virtuale viene utilizzata per l'inserimento e la modifica degli ingr
 \section{Problematiche e soluzioni}
 In questa sezione andremo a descrivere le problematiche riscontrate durante lo sviluppo dell'applicazione e le relative soluzioni adottate.
 \subsection{Il file di config non veniva letto}
-Il file di config, dopo la compilazione e l'ultilizzo standalone, non veniva letto correttamente, in quanto il percorso del file era errato. Per risolvere il problema è stato necessario spostare il file in una cartella chiamata \textbf{StreamingAssets} all'interno della cartella \textbf{Assets} del progetto Unity. In questo modo il file viene incluso nella build e il percorso in cui si trova, in base alla piattaforma di destinazione, viene composto a partire dal valore della variabile \texttt{Application.streamingAssetsPath} di Unity.
+Il file di config, dopo la compilazione e l'utilizzo standalone, non veniva letto correttamente, in quanto il percorso del file era errato. Per risolvere il problema è stato necessario spostare il file in una cartella chiamata \textbf{StreamingAssets} all'interno della cartella \textbf{Assets} del progetto Unity. In questo modo il file viene incluso nella build e il percorso in cui si trova, in base alla piattaforma di destinazione, viene composto a partire dal valore della variabile \texttt{Application.streamingAssetsPath} di Unity.
 
 \subsection{I prefab dentro la scroll list avevano dei collider di grandezza errata}
-Inizialmente i prefab all'interno della scroll list erano composti da un input field e vari bottoni. Tuttavia, più cresceva il numero di elementi nella scroll list, più i collider di questi bottoni diminuivano di dimensione, rendendoli impossibili da premere. Questo problema è stato risolto creando un unico bottone contenente il nome dell'ingrediente che, se premuto, fa comparire un menù per la modifica di quest'ultimo.
+Inizialmente i prefab all'interno della scroll list erano composti da un input field e vari bottoni. Tuttavia, più cresceva il numero di elementi nella scroll list, più i collider di questi bottoni diminuivano di dimensione, rendendo impossibile l'interazione tramite tocco. Questo problema è stato risolto creando un unico bottone contenente il nome dell'ingrediente che, se premuto, fa comparire un menù per la modifica di quest'ultimo.
 \subsection{Utilizzo delle coordinate che forniva Gemini per mettere dei punti sugli ingredienti}
 Gemini fornisce le coordinate degli ingredienti all'interno dell'immagine, ma queste coordinate sono bidimensionali e relative all'immagine stessa, quindi non possono essere utilizzate direttamente per posizionare i punti 3D nel mondo reale. Questo problema non è stato risolto, ma potrà essere uno sviluppo futuro dell'applicazione.
 
 \subsection{Debugging dell'applicazione dopo la compilazione}
-Il debugging dell'applicazione dopo la compilazione è stato molto difficile, essendo che lo strumento integrato di visual studio era molto instabile e aveva un lag abbastanza elevato, rendendo inutilizzabile l'applicazione. Per risolvere il problema, è stato necessario creare un panel e una classe che permettevano di visualizzare il log dell'applicazione, in modo da poter vedere gli errori e i messaggi di debug direttamente nell'applicazione.
+Il debugging dell'applicazione dopo la compilazione è stato molto difficile, in quanto lo strumento integrato di visual studio era molto instabile e aveva un lag abbastanza elevato, rendendo inutilizzabile l'applicazione. Per risolvere il problema, è stato necessario creare un panel e una classe che permettevano di visualizzare il log dell'applicazione, in modo da poter vedere gli errori e i messaggi di debug direttamente nell'applicazione.

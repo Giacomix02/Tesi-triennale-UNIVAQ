@@ -57,7 +57,7 @@ Per generare gli ingredienti useremo la funzione della fig.\ref{fig:getIngredien
     \item Lo schema che definisce i campi che Gemini deve restituire
 \end{itemize}
 
-Per convertire l'imagine in formato \texttt{Base64} useremo la funzione \texttt{Convert.ToBase64String()} di C\#. 
+Per convertire l'immagine in formato \texttt{Base64} useremo la funzione \texttt{Convert.ToBase64String()} di C\#. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth,height=\textheight,keepaspectratio]{figures/chapter_1/base64.png}
@@ -101,7 +101,7 @@ Per generare gli ingredienti useremo la funzione della fig.\ref{fig:getRecipesPo
     \label{fig:recipeSchema}
 \end{figure}
 
-Come possiamo facilmente notare lo schema è molto più semplice e richiede soltanto la restituzione di un array di oggetti, ognuno dei queli contiene una ricetta di tipo stringa.
+Come possiamo facilmente notare lo schema è molto più semplice e richiede soltanto la restituzione di un array di oggetti, ognuno dei quali contiene una ricetta di tipo stringa.
 Invece la richiesta testuale fatta è la seguente:
 \begin{quote}
     \texttt{create three recipes only with the following ingredients: \{ingredientsConcat\}. Write it with tags compatible with TextMesh Pro, make the recipes titles colored in red, make the number of the instruction list colored in red, use bold in subtitles}
@@ -144,7 +144,7 @@ Sono presenti tre metodi:
 \end{figure}
 
 \section{Scatto della foto}
-Per scattare la foto usiamo la classe \textbf{PhotoShooter}, che utilizza la libreria \\ \textbf{UnityEngine.Windows.WebCam} di Unity per accedere alla fotocamera del dispositivo. La classe è responsabile della gestione della fotocamera, dello scatto della foto e del salvataggio dell'immagine in un file ed è implemantata tramite un singleton per garantire che ci sia una sola istanza della classe durante l'esecuzione dell'applicazione.
+Per scattare la foto usiamo la classe \textbf{PhotoShooter}, che utilizza la libreria \\ \textbf{UnityEngine.Windows.WebCam} di Unity per accedere alla fotocamera del dispositivo. La classe è responsabile della gestione della fotocamera, dello scatto della foto e del salvataggio dell'immagine in un file ed è implementata tramite un singleton per garantire che ci sia una sola istanza della classe durante l'esecuzione dell'applicazione.
 Sono presenti due funzioni principali:
 \begin{itemize}
     \item \texttt{TakePhoto(string photoPath)}: controlla se la foto non esiste già, altrimenti la cancella e crea un processo asincrono per scattare e salvare la foto. Fig.\ref{fig:takePhoto}
@@ -203,7 +203,7 @@ In figura \ref{fig:onCapturedPhotoToDisk} il metodo \textbf{OnCapturedPhotoToDis
 In figura \ref{fig:onStoppedPhotoMode} il metodo \textbf{OnStoppedPhotoMode} viene chiamato per terminare la modalità foto e rilasciare le risorse della fotocamera, in particolare tramite \texttt{photoCaptureObject.Dispose()} il cui metodo \texttt{Dispose()} viene chiamato per arrestare l'istanza di \textbf{PhotoCapture}.
 
 \section{Lista ingredienti}
-Possiamo definire la lista degli ingredienti come uno dei più complessi elementi presenti nell'applicazione, in quanto è composta da dei prefab che vengono visualizzati in essa, ognuno dei quali contiene il nome dell'ingrediente modificabile e eliminabile.
+Possiamo definire la lista degli ingredienti come uno dei più complessi elementi presenti nell'applicazione, in quanto è composta da dei prefab che vengono visualizzati in essa, ognuno dei quali contiene il nome dell'ingrediente modificabile ed eliminabile.
 \subsection{Prefab}
 Utilizzando il prefab \textbf{IngredientButtonRow} possiamo visualizzare gli ingredienti all'interno della lista, generandolo tante volte quanti sono gli ingredienti presenti nel file JSON.
 \begin{figure}[H]
@@ -232,7 +232,7 @@ La scroll list, come visto in fig.\ref{fig:scrollablePanel}, è formata da diver
     \label{fig:ingredientsScrollListStart}
 \end{figure}
 
-Fra le diverse variabli dichiarate troviamo \textbf{ingredients}, una lista di tipo \textbf{Ingredient} che andremo a popolare alla chiamata del metodo Start. \\
+Fra le diverse variabili dichiarate troviamo \textbf{ingredients}, una lista di tipo \textbf{Ingredient} che andremo a popolare alla chiamata del metodo Start. \\
 Nel metodo \texttt{Start()} tramite la classe \textbf{FileHandler} andremo a leggere il file JSON degli ingredienti, se il metodo \texttt{LoadJson()} non è nulla allora chiamiamo la funzione \texttt{getIngredients()} implementata nella classe per serializzare il JSON, che restituisce una lista di ingredienti. Questa lista viene passata al metodo \texttt{generateRows()}, che si occupa di generare i prefab per ogni ingrediente presente nella lista \textbf{ingredients} e di aggiornare la variabile \textbf{ingredients} per poi generare i prefab all'interno della lista.
 \begin{figure}[H]
     \centering
